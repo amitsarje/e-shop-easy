@@ -2,6 +2,3 @@
 *.dat
 *.dir
 *.pyc
-celerybeat-schedule.dir
-celerybeat-schedule.bak
-celerybeat-schedule.dat
