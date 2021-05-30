@@ -1,4 +1,4 @@
-* .bak
-* .dat
-* .dir
-* .pyc
+*.bak
+*.dat
+*.dir
+*.pyc
