@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% load friendshiptags%}
+
+{% block content%}
+{%include 'navbar.html' %}
+<div class="container" style='text-align:center ; margin-top:50px'><span style="font-size:xx-large;"> &nbsp;<a href="{% url 'add_friends' %}" ><li class="fa fa-plus"></li>&nbsp;Add Friends</a></span> &nbsp; &nbsp; <a href="{% url 'view_frequests' %}">Requests &nbsp;<span class="badge badge-dark">{{frcount}}</span>
+</a></div>
+
+<div class="container">
+    <table class="table" style="text-align: center;margin-top:100px">
+        {% for friend in friends%}
+        <tr>
+            <td>{{friend}}</td>
+        </tr>    
+        {% endfor  %}
+    
+    </table>
+</div>
+
+{% endblock content%}

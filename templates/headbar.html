@@ -1,0 +1,39 @@
+<div class="container-fluid">
+
+  {% if user.is_authenticated %}
+  <div class="container-fluid" style="color:blue ; height:40px;">
+    
+    <div class="dropdown" style="float:right">
+      <h6 class="btn dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <b style="color:blue"><li class="fa fa-user-circle"></li>{{request.user}}</b>
+      </h6>
+      <div class="dropdown-menu" style="margin-right:30px;" >
+        <a class="dropdown-item" href="/"><li class="fa fa-home"></li> &nbsp;Home</a>
+        <a class="dropdown-item" href="/wallet/"><i class="fa fa-credit-card" aria-hidden="true"></i> My Wallet</a>
+        <a class="dropdown-item" href="/view_fav/main"><i class="fa fa-heart" aria-hidden="true"></i> &nbsp;My Favourites</a>
+        <a class="dropdown-item" href="/logout/"><li class="fa fa-sign-out"></li> &nbsp;Logout</a>
+      </div>
+    </div>
+
+    <div class="dropdown" style="float: right;">
+      {% if N%}
+      <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Notifications <span class="badge badge-light" style="background-color:red;color:white">{{count}}</span>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="width: 500px;margin-right:300px">
+        {% for n in N %}
+        <a  href="{% url 'view_fav' 'via_notification' %}" style="border:none"><li class="list-group-item fa fa-check" > {{n.content|linebreaksbr}}</a>
+        {% endfor%}
+      </div>
+    {% endif%}
+    </div>
+      <hr>
+  </div>
+    {% else %}
+    <hr>
+    <div class="container-fluid" style="color:blue ; height:40px ;margin-top:25px">
+      <h5 style = "text-align:center;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">tagline </h5>
+    </div>
+    <hr>
+    {% endif %} 
+</div>

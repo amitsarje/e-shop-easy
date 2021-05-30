@@ -1,0 +1,90 @@
+
+{% extends 'base.html'%}
+
+{%block content %}
+{%include 'navbar.html' %}
+    <div class="container-fluid" style="text-align:center ; margin-top:10px ;">
+        <div class="container"><span style="font-size:xx-large;"> &nbsp;Wallet</span> &nbsp; &nbsp; <a href="{% url 'view_requests' %}">Requests &nbsp;<span class="badge badge-dark">{{rcount}}</span>
+        </a></div>
+        <hr style="background-color: black;">
+      </div>
+    <hr>
+    {% if messages%}
+        {% for m in messages%}
+        {% if 'error' in m.tags%}
+        <div class="alert alert-danger" role="alert" style="text-align: center;">
+        {{m}}
+        </div>
+        {% else%}
+        <div class="alert alert-success" role="alert" style="text-align: center;">
+            {{m}}
+        </div>
+        {% endif%}
+        {%endfor%}
+     {% endif %}
+    <div class="container" style="margin-top:100px">
+    <div class="card" style="width: 18rem;margin: 0 auto;">
+        <div class="card-body">
+          <h5 class="card-title">My Wallet</h5>
+          <p class="card-text">Balance = {{account.wallet_amount}} INR</p>
+          <button  type= "button"  class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Send</button>
+          <button  type= "button"  class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter1">Request</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">search recipient</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="modal-body">
+                <form id="searchform" class="form" action="{% url 'select_account' 'send' %}" method="POST" style="margin: 0 auto;">
+                <div class="container">
+                        {%csrf_token%}
+                        <input class="form-control mr-sm-2" type="text" placeholder="username" name="query1">
+                </div>
+                <div class="modal-footer">
+                  <button form = 'searchform' class="btn btn-outline-info my-2 my-sm-1" type="submit"><li class="fa fa-search"></li>Search</button>  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="modal fade" id="exampleModalCenter1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Search Donor</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="modal-body">
+                <form id="requestform" class="form" action="{% url 'select_account' 'request' %}" method="POST" style="margin: 0 auto;">
+                <div class="container">
+                        {%csrf_token%}
+                        <input class="form-control mr-sm-2" type="text" placeholder="username" name="query2">
+                </div>
+                <div class="modal-footer">
+                  <button form = 'requestform' class="btn btn-outline-info my-2 my-sm-1" type="submit"><li class="fa fa-search"></li>Search</button>  
+                </div>
+
+            </form>
+               
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <div  style="position: relative; top:260px">
+        {% include 'footer.html'%}
+       </div>
+{% endblock content %}

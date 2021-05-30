@@ -1,0 +1,43 @@
+
+{% extends 'base.html'%}
+
+{%block content %}
+{%include 'navbar.html' %}
+    <div class="container-fluid" style="text-align:center ; margin-top:10px ;">
+        <div class="container"><h5> &nbsp;<i class="fa fa-heart" aria-hidden="true"></i>My Favourites </h5></div>
+        <hr style="background-color: black;">
+      </div>
+    <hr>
+    {% if Fav %}
+    <div class="container">
+        
+        <table class="table"  style="background-color:white ;height:250px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.658);border-radius:15px ; margin-top:20px ; text-align:center">
+            <tr>
+            <th>image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Link</th>
+            <th>remove</th> 
+        </tr>
+        {% for f in Fav%}
+        <tr>
+        <td><img class="img-fluid" src="{{f.img}}"></td>
+        <td>{{f.name|truncatechars:50}}</td>
+        <td>{{f.price}}</td>
+        <td><a href="{{f.link}}"><i class="fa fa-external-link" aria-hidden="true"></i>Check</a></td>
+        <td><a href="{% url 'remove_fav' f.id %}">Remove</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+    
+    </div>
+    {% else%}
+    <div class="container" style="text-align: center;"> 
+        * You haven't added any Favourites yet
+    </div>
+    {% endif %}
+    
+    <div class="container-fluid" style="position: relative; top:400px">
+    {% include 'footer.html'%}
+    </div>
+{% endblock content %}

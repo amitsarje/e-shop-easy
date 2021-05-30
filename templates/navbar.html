@@ -1,0 +1,46 @@
+
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">E-ShopEasy</a>
+    {% if request.user.is_authenticated %}
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa fa-bars" aria-hidden="true"></i>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto" style="margin-right:50px">
+        {% if N%}
+        <div class="dropdown" style="float:right ;">
+            <h6 class="btn dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <b style="color:white">Notifications <span class="badge badge-light" style="background-color:red;color:white">{{count}}</span></b>
+            </h6>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="width: 500px;margin-right:300px">
+                {% for n in N %}
+                <a  href="{% url 'view_fav' 'via_notification' %}" style="border:none"><li class="list-group-item fa fa-check" > {{n.content|linebreaksbr}}</a>
+                {% endfor%}
+              </div>
+        </div>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link" href="/wallet/">Wallet</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/view_fav/main/">Favourites</a>
+        </li>
+        <div class="dropdown" style="float:right ;">
+            <h6 class="btn dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <b style="color:white"><li class="fa fa-user-circle"></li>{{request.user}}</b>
+            </h6>
+            <div class="dropdown-menu" >
+              <a class="dropdown-item" href="/"><li class="fa fa-home"></li> &nbsp;Home</a>
+              <a class="dropdown-item" href="/friends_list/"><li class="fa fa-users"></li> &nbsp;Friends</a>
+              <a class="dropdown-item" href="/logout/"><li class="fa fa-sign-out"></li> &nbsp;Logout</a>
+
+
+            </div>
+        </div>
+        
+      </ul>
+      
+    </div>
+    {% endif %}
+  </nav>

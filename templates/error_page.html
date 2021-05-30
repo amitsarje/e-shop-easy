@@ -1,0 +1,20 @@
+
+{% extends 'base.html'%}
+
+{%block content %}
+    {% include 'headbar.html'%}
+    <div class="container-fluid" style="text-align:center ; margin-top:10px ;">
+        <div class="container"><h5> &nbsp;Error</h5></div>
+        <hr style="background-color: black;">
+      </div>
+    <hr>
+    <div class="container" style="text-align: center;">
+        <p>Something went wrong !</p>
+        <p>Check Your Connection or Your connection speed might be slow </p>
+        <p>Return to the <a href="{% url 'home' %}">Homepage</a></p>
+    </div>
+
+    <div class="container-fluid" style="position: relative; top:400px">
+    {% include 'footer.html'%}
+    </div>
+{% endblock content %}

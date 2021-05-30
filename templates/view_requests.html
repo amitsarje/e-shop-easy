@@ -1,0 +1,38 @@
+
+{% extends 'base.html'%}
+
+{%block content %}
+{%include 'navbar.html' %}
+    <div class="container-fluid" style="text-align:center ; margin-top:10px ;">
+        <div class="container"><h5> &nbsp;Transaction requests</h5></div>
+        <hr style="background-color: black;">
+      </div>
+    <hr>
+    {% if requests %}
+    <div class="container">
+        <table class="table"  style="background-color:white ;height:250px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.658);border-radius:15px ; margin-top:20px ; text-align:center">
+            <tr>
+            <th>From</th>
+            <th>Amount</th>
+            <th>Approval</th>
+        </tr>
+        {% for r in requests%}
+        <tr>
+           <td>{{r.requester_username}}</td>
+           <td>{{r.requestedmoney}} INR</td>
+           <td><a href="{% url  'transactions' r.requester_id  'send' r.id r.requestedmoney %}" style="color:green"><i class="fa fa-check" aria-hidden="true"></i>accept&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><a href="{% url  'delete_request'  r.id  0 %}" style="color:red"><i class="fa fa-times" aria-hidden="true"></i>reject</a></td>
+        </tr>
+        {%endfor%}
+    </table>
+    
+    </div>
+    {%else %}
+    <div class="container" style="text-align: center;color:red">
+    <p>*You dont have any transaction requests</p>
+    </div>
+    {% endif%}
+    
+    <div style="position: relative; top:500px">
+    {% include 'footer.html'%}
+    </div>
+{% endblock content %}

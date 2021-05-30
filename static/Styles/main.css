@@ -1,0 +1,137 @@
+
+        html{
+          position: relative;
+          min-height:100%;
+          scroll-behavior: smooth;
+        }
+      
+       
+        div.scroll , .scrolln{
+          margin:4px, 4px;
+          padding:4px;
+          background-color: inherit;
+          width:auto;
+          height: 600px;
+          overflow:scroll;
+          text-align:left;
+      }
+
+      .scroll ul li:hover{
+        background-color: #dfe1ee;
+      }
+
+      .scroll ul li{
+        background-color: inherit;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size: 14px;
+      }
+
+      .table a{
+        text-decoration:none;width:100%;color:#303C6C;
+      }
+
+
+      
+      
+    
+      
+      .headstyle
+      {
+    
+      background:#F2F3F5;
+
+      }
+
+      .container-fluid.main
+      {
+        height: 200px;
+        text-align:center ; 
+        padding-top:50px;
+        color: white;
+        
+        background-image: linear-gradient(to right ,#360033, #0b8793);
+      }
+      .navbar{
+        
+        background-image: linear-gradient(to right ,#360033, #0b8793);
+      }
+
+      .navbar a{
+        color: white;
+      }
+      .dropdown-menu a {
+        color: black
+      }
+      .dropdown-menu{
+        margin-right:100px;
+      }
+      .fa.fa-bars{
+        background-color: inherit;
+        color: white;
+      }
+
+      footer{
+        background-image:linear-gradient(to right ,#360033, #0b8793);
+        color: white ;
+      }
+
+      .headstyle .div
+      {
+        color:black;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        font-size:x-large;
+        text-align: center;
+      }
+
+      .loginform{
+        background-color: white;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.712) ;
+        border-radius: 10px;
+        width:50% ;
+        margin:100px auto;
+        font-family: sans-serif
+      }
+
+      @media only screen and (max-width: 600px) {
+          
+          [class*="loginform"]
+          {
+            width:100%
+          }
+          
+
+        }
+
+        .topbar li {
+          display:inline-block;
+          *display:inline; /*IE7*/
+          *zoom:1; /*IE7*/
+          color:black;
+          margin-right:10px;
+        }
+        .scrolln::-webkit-scrollbar {
+          scrollbar-width: 0.5px;
+        }
+        
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .scrolln{
+          /* IE and Edge */
+          scrollbar-width: 0.5px;  /* Firefox */
+        }
+
+     
+      .loginform .form-group #id_username ,.loginform .form-group #id_password{
+        outline: 0;
+        border-width: 0 0 1px;
+        border-color: grey;
+       
+      }
+      .loginform .form-group #id_username:focus ,.loginform .form-group #id_password:focus{
+        outline: 0;
+        border-width: 0 0 2px;
+        border-color: rgba(0, 0, 255, 0.452);
+        box-shadow: 0 0 0 0.2rem rgb(253, 255, 253);
+ 
+      }
+      .row:before, .row:after {display: none !important;}
+ 

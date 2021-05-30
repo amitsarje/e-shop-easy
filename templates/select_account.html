@@ -1,0 +1,93 @@
+
+{% extends 'base.html'%}
+
+{%block content %}
+    {% include 'headbar.html'%}
+    <div class="container-fluid" style="text-align:center ; margin-top:10px ;">
+        <div class="container"><h5> &nbsp;Transactions</h5></div>
+        <hr style="background-color: black;">
+      </div>
+    <hr>
+    {% if messages%}
+      <div class="alert alert-danger" role="alert" style="text-align: center;">
+        {% for m in messages%}
+        {{m}}
+        {%endfor%}
+      </div>
+     {% endif %}
+
+
+    {% if user %}
+    <div class="container" style="margin-top: 50px;">
+        <div class="card" style="width: 18rem;margin: 0 auto;">
+            <!-- <img class="card-img-top" src="..." alt="Card image cap"> -->
+            <div class="card-body">
+              <h5 class="card-title">User : {{user.user.username}}</h5>
+              <hr>
+              <p class="card-text">
+                <form action="{% url 'transactions' user.id  type  0  0.00 %}" method="POST" id="transactionform">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Enter Amount</label>
+                  <input id="money" type="number" class="form-control" id="exampleInputPassword1" placeholder="Money" name="money">
+                </div>
+                {%ifequal type 'send' %}
+                <button  type= "button" onclick ='main()' class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Send</button>
+                {% else %}
+                <button  type= "button" onclick ='main1()' class="btn btn-success" data-toggle="modal" data-target="#exampleModalCenter">Request</button>
+                {% endifequal%}
+              </form></p>
+            </div>
+          </div>
+    
+    </div>
+    {% endif%}
+  
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Confirmation</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div id="modal-body">
+            <div id="line" >
+              {% ifequal type 'send'%}
+                <script>
+                    function main(){
+                        var money = document.getElementById('money')
+                        document.getElementById("modal-body").innerHTML= "&nbsp;Send " + money.value + " Rs  to recipient ? " ;
+                        
+                        }
+                 </script>
+              {% else%}
+              <script>
+                function main1(){
+                    var money = document.getElementById('money')
+                    document.getElementById("modal-body").innerHTML= "&nbsp;Request " + money.value + " Rs  to donor ? " ;
+                    
+                    }
+             </script>
+             {% endifequal%}
+
+            </div>
+            <div id="recipient_name">
+                {{recipient.user.username}}
+            </div>
+              
+           
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button  type="submit" form ="transactionform" class="btn btn-primary">confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid" style="position: relative; top:200px">
+    {% include 'footer.html'%}
+    </div>
+{% endblock content %}

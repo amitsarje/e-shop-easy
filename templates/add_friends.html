@@ -1,0 +1,22 @@
+{% extends 'base.html'%}
+
+
+{% block content%}
+{% include 'navbar.html'%}
+{% if messages%}
+<div class="alert alert-success" style="text-align: center;">
+    {% for message in messages%}
+    {{message}}
+    {% endfor %}    
+</div>
+{% endif %}
+
+<div class="container">
+    <form class="form-inline" action="{% url 'add_friends'  %}" method="POST" >
+        {%csrf_token%}
+        <input class="form-control mr-sm-2" type="text" placeholder="Search users" name="username">
+        <button class="btn btn-outline-info my-2 my-sm-1" type="submit"><li class="fa fa-search"></li></button>  
+    </form>
+</div>
+
+{% endblock content%}

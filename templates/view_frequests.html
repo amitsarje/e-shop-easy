@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+{% load friendshiptags %}
+
+{% block content%}
+{%include 'navbar.html' %}
+<div class="container">
+    <table class="table">
+        <tr>
+            <th>Requests</th>
+            <th>Accept/Reject</th>
+        </tr>
+        {% for f in fr %}
+        <tr>
+            <td>{{f.from_user}}</td>
+            <td><a href="{% url 'a_or_r' 'a' f.from_user %}" style="color:green"><i class="fa fa-check" aria-hidden="true"></i>accept&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a><a href="{% url 'a_or_r' 'r' f.from_user %}" style="color:red"><i class="fa fa-times" aria-hidden="true"></i>reject</a></td>
+        </tr>
+        {% endfor%}
+
+    </table>
+</div>
+
+
+
+{% endblock content%}
